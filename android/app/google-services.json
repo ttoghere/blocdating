@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "681996567667",
+    "project_id": "datingapp-12",
+    "storage_bucket": "datingapp-12.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681996567667:android:a4bfe4f051656beb861606",
+        "android_client_info": {
+          "package_name": "com.example.firebaseauthbloc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "681996567667-rmhrttht29gdvj8e0lc4s271b9hha8mg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpNYXV2U9_lsYLArVZE8FFEEoleHw2k1Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "681996567667-rmhrttht29gdvj8e0lc4s271b9hha8mg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "681996567667-lrqcjj85i5dos9ls5vejcm22oe0a7jpt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.firebaseauthbloc"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681996567667:android:2154a4191b21a9f0861606",
+        "android_client_info": {
+          "package_name": "site.tunckankilic.blocdating"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "681996567667-rmhrttht29gdvj8e0lc4s271b9hha8mg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpNYXV2U9_lsYLArVZE8FFEEoleHw2k1Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "681996567667-rmhrttht29gdvj8e0lc4s271b9hha8mg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "681996567667-lrqcjj85i5dos9ls5vejcm22oe0a7jpt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.firebaseauthbloc"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
