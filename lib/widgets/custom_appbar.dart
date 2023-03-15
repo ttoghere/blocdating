@@ -1,42 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
-  final String title;
-  final bool hasActions;
 
-  const CustomAppBar({
-    Key? key,
+class CustomizedAppBar extends StatelessWidget {
+  const CustomizedAppBar({
+    super.key,
+    required this.hasActions,
     required this.title,
-    this.hasActions = true,
-  }) : super(key: key);
+  });
+
+  final bool hasActions;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
-      centerTitle: false,
-      automaticallyImplyLeading: false,
       title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            child: SizedBox(
-              child: SvgPicture.asset(
-                'assets/logo.svg',
-                height: 50,
-              ),
+            child: SvgPicture.asset(
+              "images/logo.svg",
+              height: 50,
             ),
           ),
           Expanded(
             flex: 2,
             child: Text(
               title,
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineMedium!
-                  .copyWith(color: Theme.of(context).primaryColor),
+              style: GoogleFonts.allan(
+                textStyle: Theme.of(context).textTheme.headlineLarge,
+              ),
             ),
           ),
         ],
@@ -59,7 +56,4 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
           : null,
     );
   }
-
-  @override
-  Size get preferredSize => const Size.fromHeight(56.0);
 }

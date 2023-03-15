@@ -34,9 +34,12 @@ class OnboardingScreen extends StatelessWidget {
           if (!tabController.indexIsChanging) {}
         });
         return Scaffold(
-          appBar: const CustomAppBar(
-            title: 'ARROW',
-            hasActions: false,
+          appBar: const PreferredSize(
+            preferredSize: Size.fromHeight(56),
+            child: CustomizedAppBar(
+              hasActions: false,
+              title: "Arrow",
+            ),
           ),
           body: TabBarView(
             children: [

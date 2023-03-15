@@ -2,7 +2,6 @@ import 'package:blocdating/models/models.dart';
 import 'package:blocdating/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-
 class UserCard extends StatelessWidget {
   const UserCard({
     Key? key,
@@ -14,7 +13,7 @@ class UserCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Hero(
-      tag: 'user_card',
+      tag: 'user_image',
       child: Padding(
         padding: const EdgeInsets.only(top: 10.0, left: 20, right: 20),
         child: SizedBox(
@@ -67,8 +66,12 @@ class UserCard extends StatelessWidget {
                     ),
                     Text(
                       user.jobTitle,
-                      style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                          color: Colors.white, fontWeight: FontWeight.normal),
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineMedium!
+                          .copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.normal),
                     ),
                     Row(
                       children: [
@@ -76,7 +79,6 @@ class UserCard extends StatelessWidget {
                         UserImageSmall(url: user.imageUrls[2]),
                         UserImageSmall(url: user.imageUrls[3]),
                         UserImageSmall(url: user.imageUrls[4]),
-                        const SizedBox(width: 10),
                         Container(
                           width: 35,
                           height: 35,

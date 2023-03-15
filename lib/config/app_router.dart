@@ -15,6 +15,8 @@ class AppRouter {
         return UsersScreen.route(user: settings.arguments as User);
       case OnboardingScreen.routeName:
         return OnboardingScreen.route();
+      case SplashScreen.routeName:
+        return SplashScreen.route();
       default:
         return _errorRoute();
     }

@@ -1,34 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 ThemeData theme() {
   return ThemeData(
     primaryColor: const Color(0xFF2B2E4A),
     scaffoldBackgroundColor: Colors.white,
-    textTheme: const TextTheme(
-      headlineLarge: TextStyle(
-        color: Color(0xFF2B2E4A),
-        fontWeight: FontWeight.bold,
-        fontSize: 36,
+    textTheme: TextTheme(
+      headlineLarge: GoogleFonts.allan(
+        textStyle: const TextStyle(
+          color: Color(0xFF2B2E4A),
+          fontWeight: FontWeight.bold,
+          fontSize: 36,
+        ),
       ),
-      headlineMedium: TextStyle(
-        color: Color(0xFF2B2E4A),
-        fontWeight: FontWeight.bold,
-        fontSize: 18,
+      headlineMedium: GoogleFonts.allan(
+        textStyle: const TextStyle(
+          color: Color(0xFF2B2E4A),
+          fontWeight: FontWeight.bold,
+          fontSize: 18,
+        ),
       ),
-      headlineSmall: TextStyle(
-        color: Color(0xFF2B2E4A),
-        fontWeight: FontWeight.normal,
-        fontSize: 14,
+      headlineSmall: GoogleFonts.allan(
+        textStyle: const TextStyle(
+          color: Color(0xFF2B2E4A),
+          fontWeight: FontWeight.normal,
+          fontSize: 14,
+        ),
       ),
-      bodyLarge: TextStyle(
-        color: Color(0xFF2B2E4A),
-        fontWeight: FontWeight.normal,
-        fontSize: 12,
+      bodyLarge: GoogleFonts.allan(
+        textStyle: const TextStyle(
+          color: Color(0xFF2B2E4A),
+          fontWeight: FontWeight.normal,
+          fontSize: 12,
+        ),
       ),
-      bodyMedium: TextStyle(
-        color: Color(0xFF2B2E4A),
-        fontWeight: FontWeight.normal,
-        fontSize: 10,
+      bodyMedium: GoogleFonts.allan(
+        textStyle: const TextStyle(
+          color: Color(0xFF2B2E4A),
+          fontWeight: FontWeight.normal,
+          fontSize: 10,
+        ),
       ),
     ),
     colorScheme: ColorScheme.fromSwatch()

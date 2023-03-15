@@ -17,7 +17,10 @@ class MatchesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: 'MATCHES'),
+      appBar: const PreferredSize(
+        preferredSize: Size.fromHeight(56),
+        child: CustomizedAppBar(hasActions: false, title: "Matches"),
+      ),
       body: Container(),
     );
   }
