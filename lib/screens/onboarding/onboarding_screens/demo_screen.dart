@@ -5,11 +5,11 @@ import 'package:step_progress_indicator/step_progress_indicator.dart';
 class Demo extends StatelessWidget {
   final TabController tabController;
 
-  const Demo({
+   Demo({
     Key? key,
     required this.tabController,
   }) : super(key: key);
-
+  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -20,14 +20,14 @@ class Demo extends StatelessWidget {
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children:const [
-              CustomTextHeader(text: 'What\'s Your Gender?'),
-              SizedBox(height: 20),
-              CustomCheckbox(text: 'MALE'),
-              CustomCheckbox(text: 'FEMALE'),
-              SizedBox(height: 100),
-              CustomTextHeader(text: 'What\'s Your Age?'),
-              CustomTextField(hint: 'ENTER YOUR AGE'),
+            children:  [
+              const CustomTextHeader(text: 'What\'s Your Gender?'),
+              const SizedBox(height: 20),
+              const CustomCheckbox(text: 'MALE'),
+              const CustomCheckbox(text: 'FEMALE'),
+              const SizedBox(height: 100),
+              const CustomTextHeader(text: 'What\'s Your Age?'),
+              CustomTextField(hint: 'ENTER YOUR AGE',controller: controller,),
             ],
           ),
           Column(

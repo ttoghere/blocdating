@@ -5,11 +5,11 @@ import 'package:step_progress_indicator/step_progress_indicator.dart';
 class Location extends StatelessWidget {
   final TabController tabController;
 
-  const Location({
+  Location({
     Key? key,
     required this.tabController,
   }) : super(key: key);
-
+  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -20,9 +20,12 @@ class Location extends StatelessWidget {
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              CustomTextHeader(text: 'Where Are You?'),
-              CustomTextField(hint: 'ENTER YOUR LOCATION'),
+            children: [
+              const CustomTextHeader(text: 'Where Are You?'),
+              CustomTextField(
+                hint: 'ENTER YOUR LOCATION',
+                controller: controller,
+              ),
             ],
           ),
           Column(

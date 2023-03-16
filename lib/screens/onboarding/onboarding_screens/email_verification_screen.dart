@@ -5,11 +5,11 @@ import 'package:step_progress_indicator/step_progress_indicator.dart';
 class EmailVerification extends StatelessWidget {
   final TabController tabController;
 
-  const EmailVerification({
+   EmailVerification({
     Key? key,
     required this.tabController,
   }) : super(key: key);
-
+  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -19,9 +19,9 @@ class EmailVerification extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: [
           Column(
-            children:const [
-              CustomTextHeader(text: 'Did You Get the Verification Code?'),
-              CustomTextField(hint: 'ENTER YOUR CODE'),
+            children:  [
+           const   CustomTextHeader(text: 'Did You Get the Verification Code?'),
+              CustomTextField(hint: 'ENTER YOUR CODE',controller: controller,),
             ],
           ),
           Column(
@@ -32,7 +32,7 @@ class EmailVerification extends StatelessWidget {
                 selectedColor: Theme.of(context).primaryColor,
                 unselectedColor: Theme.of(context).colorScheme.background,
               ),
-            const  SizedBox(height: 10),
+              const SizedBox(height: 10),
               CustomButton(tabController: tabController, text: 'NEXT STEP'),
             ],
           ),

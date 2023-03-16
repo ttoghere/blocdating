@@ -1,13 +1,19 @@
+import 'package:blocdating/cubits/cubit/sign_up_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomButton extends StatelessWidget {
   final TabController tabController;
   final String text;
+  final TextEditingController? passwordController;
+  final TextEditingController? emailController;
 
   const CustomButton({
     Key? key,
     required this.tabController,
     required this.text,
+    this.emailController,
+    this.passwordController,
   }) : super(key: key);
 
   @override
@@ -23,8 +29,11 @@ class CustomButton extends StatelessWidget {
         ),
       ),
       child: ElevatedButton(
-        onPressed: () {
+        onPressed: () async {
           tabController.animateTo(tabController.index + 1);
+          if (tabController.index == 2) {
+            context.read<SignupCubit>().signUpWithCredentials(context);
+          }
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.transparent,
