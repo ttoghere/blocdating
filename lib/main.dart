@@ -1,12 +1,12 @@
-import 'package:blocdating/blocs/bloc/auth_bloc.dart';
+import 'package:blocdating/blocs/auth/auth_bloc.dart';
+import 'package:blocdating/blocs/images/images_bloc.dart';
 import 'package:blocdating/blocs/swipe/swipe_bloc.dart';
 import 'package:blocdating/config/config.dart';
 import 'package:blocdating/models/user_model.dart';
 import 'package:blocdating/repositories/auth/auth_repository.dart';
-import 'package:blocdating/screens/home/home_screen.dart';
-import 'package:blocdating/screens/profile/profile_screen.dart';
+import 'package:blocdating/repositories/database/database_repository.dart';
+import 'package:blocdating/repositories/storage/storage_repository.dart';
 import 'package:blocdating/screens/screens.dart';
-import 'package:blocdating/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,18 +30,29 @@ class MyApp extends StatelessWidget {
         RepositoryProvider(
           create: (_) => AuthRepository(),
         ),
+  
+        RepositoryProvider(
+          create: (_) => StorageRepository(),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
             create: (_) => AuthBloc(
-              authRepository: context.read<AuthRepository>(),
+              authRepository: AuthRepository(),
             ),
           ),
           BlocProvider(
             create: (_) => SwipeBloc()
               ..add(
                 LoadUsersEvent(users: User.users),
+              ),
+          ),
+          BlocProvider(
+            create: (_) => ImagesBloc(
+              databaseRepository: DatabaseRepository(),
+            )..add(
+                LoadImages(),
               ),
           ),
         ],
