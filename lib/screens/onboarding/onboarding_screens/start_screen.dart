@@ -23,7 +23,7 @@ class Start extends StatelessWidget {
                 height: 200,
                 width: 200,
                 child: SvgPicture.asset(
-                  'assets/couple.svg',
+                  'images/couple.svg',
                 ),
               ),
               const SizedBox(height: 50),
