@@ -1,4 +1,7 @@
+import 'package:blocdating/blocs/onboarding/onboarding_bloc.dart';
 import 'package:blocdating/cubits/cubit/sign_up_cubit.dart';
+import 'package:blocdating/models/user_model.dart';
+import 'package:blocdating/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -30,9 +33,26 @@ class CustomButton extends StatelessWidget {
       ),
       child: ElevatedButton(
         onPressed: () async {
-          tabController.animateTo(tabController.index + 1);
+          if (tabController.index <= 5) {
+            tabController.animateTo(tabController.index + 1);
+          } else {
+            Navigator.of(context).pushNamed(HomeScreen.routeName);
+          }
           if (tabController.index == 2) {
-            context.read<SignupCubit>().signUpWithCredentials(context);
+            await context.read<SignupCubit>().signUpWithCredentials(context);
+            User user = User(
+                id: context.read<SignupCubit>().state.user!.uid,
+                name: "",
+                age: 0,
+                gender: "",
+                imageUrls: [],
+                interests: [],
+                bio: "",
+                jobTitle: "",
+                location: "");
+            context.read<OnboardingBloc>().add(
+                  StartOnboarding(user: user),
+                );
           }
         },
         style: ElevatedButton.styleFrom(

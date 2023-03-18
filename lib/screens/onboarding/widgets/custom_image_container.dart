@@ -2,8 +2,10 @@
 
 import 'dart:developer';
 
+import 'package:blocdating/blocs/blocs.dart';
 import 'package:blocdating/repositories/storage/storage_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
 class CustomImageContainer extends StatelessWidget {
@@ -62,7 +64,9 @@ class CustomImageContainer extends StatelessWidget {
                     }
                     if (image != null) {
                       log("İmage is okay: ${image.name}");
-                      StorageRepository().uploadImage(image);
+                      BlocProvider.of<OnboardingBloc>(context).add(
+                        UpdateUserImages(image: image),
+                      );
                     }
                   },
                 ),

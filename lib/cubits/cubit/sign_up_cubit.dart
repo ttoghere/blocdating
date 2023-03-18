@@ -24,17 +24,30 @@ class SignupCubit extends Cubit<SignupState> {
     emit(state.copyWith(password: value, status: SignUpStatus.initial));
   }
 
-  void signUpWithCredentials(BuildContext context) async {
+  Future<void> signUpWithCredentials(BuildContext context) async {
     if (!state.isFormValid || state.status == SignUpStatus.submitting) return;
     emit(
       state.copyWith(status: SignUpStatus.submitting),
     );
     try {
-      await _authRepository.signUp(
-          email: state.email, password: state.password);
-      emit(
-        state.copyWith(status: SignUpStatus.success),
-      );
+      if (state.email.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text(
+                "Fill the Email area with\nvalid email for verification.")));
+      } else if (state.password.isEmpty || state.password.length <= 6) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text(
+                "Fill the Password area with\na password what greater count then 6 as characters")));
+      } else {
+        var user = await _authRepository.signUp(
+            email: state.email, password: state.password);
+        emit(
+          state.copyWith(
+            status: SignUpStatus.success,
+            user: user,
+          ),
+        );
+      }
     } catch (_) {}
   }
 }

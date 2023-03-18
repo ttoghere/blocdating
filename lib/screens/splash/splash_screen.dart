@@ -1,7 +1,11 @@
 import 'dart:async';
+import 'dart:developer';
 
+import 'package:blocdating/blocs/blocs.dart';
 import 'package:blocdating/screens/home/home_screen.dart';
+import 'package:blocdating/screens/screens.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -19,35 +23,47 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  void passPage(BuildContext context) {
-    Timer(const Duration(seconds: 1), () {
-      Navigator.of(context).pushNamed(HomeScreen.routeName);
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SizedBox(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SvgPicture.asset(
-                'images/logo.svg',
-                height: 100,
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: BlocListener<AuthBloc, AuthState>(
+        listener: (context, state) {
+          log("Listener...");
+          if (state.status == AuthStatus.unauthenticated) {
+            Timer(
+              const Duration(seconds: 1),
+              () => Navigator.of(context).pushReplacementNamed(
+                OnboardingScreen.routeName,
               ),
-              const SizedBox(height: 20),
-              Text(
-                'ARROW',
-                style: Theme.of(context).textTheme.headlineLarge,
-              )
-            ],
+            );
+          } else if (state.status == AuthStatus.authenticated) {
+            Timer(
+              const Duration(seconds: 1),
+              () => Navigator.of(context).pushReplacementNamed(
+                HomeScreen.routeName,
+              ),
+            );
+          }
+        },
+        child: Scaffold(
+          body: SizedBox(
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(
+                    'images/logo.svg',
+                    height: 100,
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    'ARROW',
+                    style: Theme.of(context).textTheme.headlineLarge,
+                  )
+                ],
+              ),
+            ),
           ),
         ),
       ),
