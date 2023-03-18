@@ -21,22 +21,8 @@ class UserCard extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           child: Stack(
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(user.imageUrls[0]),
-                  ),
-                  borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 4,
-                      blurRadius: 4,
-                      offset: const Offset(3, 3),
-                    )
-                  ],
-                ),
+              UserImage.large(
+                url: user.imageUrls[0],
               ),
               Container(
                 decoration: const BoxDecoration(
@@ -73,27 +59,56 @@ class UserCard extends StatelessWidget {
                               color: Colors.white,
                               fontWeight: FontWeight.normal),
                     ),
-                    Row(
-                      children: [
-                        UserImageSmall(url: user.imageUrls[1]),
-                        UserImageSmall(url: user.imageUrls[2]),
-                        UserImageSmall(url: user.imageUrls[3]),
-                        UserImageSmall(url: user.imageUrls[4]),
-                        Container(
-                          width: 35,
-                          height: 35,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white,
-                          ),
-                          child: Icon(
-                            Icons.info_outline,
-                            size: 25,
-                            color: Theme.of(context).primaryColor,
-                          ),
-                        ),
-                      ],
-                    ),
+                    SizedBox(
+                      height: 70,
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: user.imageUrls.length + 1,
+                          itemBuilder: (context, index) {
+                            return (index < user.imageUrls.length)
+                                ? Padding(
+                                    padding: const EdgeInsets.only(left: 10.0),
+                                    child: UserImage.small(
+                                      url: user.imageUrls[index],
+                                    ),
+                                  )
+                                : Container(
+                                    width: 35,
+                                    height: 35,
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.white),
+                                    child: Icon(
+                                      Icons.info_outline,
+                                      size: 25,
+                                      color: Theme.of(context).primaryColor,
+                                    ),
+                                  );
+                          }),
+                    )
+                    // Row(
+                    //   children: [
+                    //     UserImageSmall(url: user.imageUrls[1]),
+                    //     UserImageSmall(url: user.imageUrls[2]),
+                    //     UserImageSmall(url: user.imageUrls[3]),
+                    //     UserImageSmall(url: user.imageUrls[4]),
+                    //     Container(
+                    //       width: 35,
+                    //       height: 35,
+                    //       decoration: const BoxDecoration(
+                    //         shape: BoxShape.circle,
+                    //         color: Colors.white,
+                    //       ),
+                    //       child: Icon(
+                    //         Icons.info_outline,
+                    //         size: 25,
+                    //         color: Theme.of(context).primaryColor,
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                   ],
                 ),
               ),

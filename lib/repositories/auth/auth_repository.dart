@@ -1,6 +1,5 @@
 import 'package:blocdating/repositories/auth/base_auth_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 
 class AuthRepository extends BaseAuthRepository {
   final FirebaseAuth _firebaseAuth;
@@ -18,6 +17,19 @@ class AuthRepository extends BaseAuthRepository {
       );
       final user = credential.user;
       return user;
+    } catch (_) {}
+    return null;
+  }
+
+  Future<void> logInWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      await _firebaseAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
     } catch (_) {}
   }
 

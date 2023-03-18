@@ -1,6 +1,5 @@
 import 'dart:developer';
-
-import 'package:blocdating/cubits/cubit/sign_up_cubit.dart';
+import 'package:blocdating/cubits/sign_up/sign_up_cubit.dart';
 import 'package:blocdating/screens/onboarding/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

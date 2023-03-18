@@ -5,7 +5,6 @@ import 'package:blocdating/repositories/auth/auth_repository.dart';
 import 'package:blocdating/screens/onboarding/widgets/widgets.dart';
 import 'package:blocdating/screens/screens.dart';
 import 'package:flutter/material.dart';
-import 'package:blocdating/models/models.dart';
 import 'package:blocdating/widgets/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -162,9 +161,9 @@ class ProfileScreen extends StatelessWidget {
                             RepositoryProvider.of<AuthRepository>(context)
                                 .signOut();
                             Navigator.of(context).pushNamedAndRemoveUntil(
-                                OnboardingScreen.routeName, (route) => false);
+                                LoginScreen.routeName, (route) => false);
                           },
-                          child: Text("Sign Out"),
+                          child: const Text("Sign Out"),
                         ),
                       ],
                     ),

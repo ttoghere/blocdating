@@ -1,38 +1,36 @@
 import 'dart:developer';
-import 'package:blocdating/blocs/swipe/swipe_bloc.dart';
-import 'package:blocdating/screens/user/user_screen.dart';
+import 'package:blocdating/blocs/blocs.dart';
+import 'package:blocdating/screens/screens.dart';
 import 'package:blocdating/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../models/user_model.dart';
 
-class HomeScreen extends StatefulWidget {
-  static const String routeName = '/home';
+class HomeScreen extends StatelessWidget {
+  static const String routeName = '/';
 
   const HomeScreen({super.key});
 
   static Route route() {
     return MaterialPageRoute(
-      settings: const RouteSettings(name: routeName),
-      builder: (context) => const HomeScreen(),
-    );
+        settings: const RouteSettings(name: routeName),
+        builder: (context) {
+          log(BlocProvider.of<AuthBloc>(context).state.status.toString());
+          return BlocProvider.of<AuthBloc>(context).state.status ==
+                  AuthStatus.unauthenticated
+              ? const LoginScreen()
+              : const HomeScreen();
+        });
   }
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  bool hasActions = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(56),
+      appBar: const PreferredSize(
+        preferredSize: Size.fromHeight(56),
         child: CustomizedAppBar(
-          hasActions: hasActions,
+          hasActions: true,
           title: "Discover",
         ),
       ),
@@ -43,66 +41,74 @@ class _HomeScreenState extends State<HomeScreen> {
               child: CircularProgressIndicator(),
             );
           } else if (state is SwipeLoaded) {
+            var userCount = state.users.length;
             return Column(
               children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pushNamed(UsersScreen.routeName,
+                InkWell(
+                  onDoubleTap: () {
+                    Navigator.pushNamed(context, '/users',
                         arguments: state.users[0]);
                   },
                   child: Draggable<User>(
                     data: state.users[0],
                     feedback: UserCard(user: state.users[0]),
-                    childWhenDragging: UserCard(user: state.users[1]),
+                    childWhenDragging: (userCount > 1)
+                        ? UserCard(user: state.users[1])
+                        : Container(),
                     onDragEnd: (drag) {
                       if (drag.velocity.pixelsPerSecond.dx < 0) {
                         context
                             .read<SwipeBloc>()
-                            .add(SwipeLeftEvent(user: state.users[0]));
+                            .add(SwipeLeft(user: state.users[0]));
                         log('Swiped Left');
                       } else {
                         context
                             .read<SwipeBloc>()
-                            .add(SwipeRightEvent(user: state.users[0]));
+                            .add(SwipeRight(user: state.users[0]));
                         log('Swiped Right');
                       }
                     },
                     child: UserCard(user: state.users[0]),
                   ),
                 ),
-                const SizedBox(
-                  height: 5,
-                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
+                    vertical: 8.0,
                     horizontal: 60,
-                    vertical: 8,
                   ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      const ChoiceButton(
-                        color: Colors.red,
-                        icon: Icons.clear_rounded,
+                      InkWell(
+                        onTap: () {
+                          context
+                              .read<SwipeBloc>()
+                              .add(SwipeRight(user: state.users[0]));
+                          log('Swiped Right');
+                        },
+                        child: ChoiceButton(
+                          color: Theme.of(context).accentColor,
+                          icon: Icons.clear_rounded,
+                        ),
                       ),
                       InkWell(
                         onTap: () {
                           context
                               .read<SwipeBloc>()
-                              .add(SwipeRightEvent(user: state.users[0]));
-                          log('Swiped Right');
+                              .add(SwipeRight(user: state.users[0]));
+                          log('Swiped Left');
                         },
                         child: const ChoiceButton(
-                          color: Colors.white,
-                          icon: Icons.favorite,
                           width: 80,
                           height: 80,
                           size: 30,
+                          color: Colors.white,
                           hasGradient: true,
+                          icon: Icons.favorite,
                         ),
                       ),
-                      const ChoiceButton(
-                        color: Colors.red,
+                      ChoiceButton(
+                        color: Theme.of(context).primaryColor,
                         icon: Icons.watch_later,
                       ),
                     ],
@@ -110,8 +116,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             );
+          }
+          if (state is SwipeError) {
+            return Center(
+              child: Text('There aren\'t any more users.',
+                  style: Theme.of(context).textTheme.headlineSmall),
+            );
           } else {
-            return const Text("Something Went Wrong");
+            return const Text('Something went wrong.');
           }
         },
       ),

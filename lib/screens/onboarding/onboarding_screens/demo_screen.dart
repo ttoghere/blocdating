@@ -5,14 +5,21 @@ import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 import '../../../blocs/blocs.dart';
 
-class Demo extends StatelessWidget {
+class Demo extends StatefulWidget {
   final TabController tabController;
 
-  Demo({
+  const Demo({
     Key? key,
     required this.tabController,
   }) : super(key: key);
+
+  @override
+  State<Demo> createState() => _DemoState();
+}
+
+class _DemoState extends State<Demo> {
   TextEditingController controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<OnboardingBloc, OnboardingState>(
@@ -82,14 +89,14 @@ class Demo extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     CustomButton(
-                        tabController: tabController, text: 'NEXT STEP'),
+                        tabController: widget.tabController, text: 'NEXT STEP'),
                   ],
                 ),
               ],
             ),
           );
         } else {
-          return Text("Something went wrong");
+          return const Text("Something went wrong");
         }
       },
     );

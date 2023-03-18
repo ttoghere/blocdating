@@ -22,7 +22,17 @@ class UserImage extends StatelessWidget {
   const UserImage.medium({
     Key? key,
     this.url,
-    this.height = 150,
+    this.height = 200,
+    this.width = double.infinity,
+    this.margin,
+    this.boxShadow,
+    this.border,
+    this.child,
+  }) : super(key: key);
+  const UserImage.large({
+    Key? key,
+    this.url,
+    this.height = double.infinity,
     this.width = double.infinity,
     this.margin,
     this.boxShadow,

@@ -7,7 +7,7 @@ import 'package:step_progress_indicator/step_progress_indicator.dart';
 class Location extends StatelessWidget {
   final TabController tabController;
 
-  Location({
+  const Location({
     Key? key,
     required this.tabController,
   }) : super(key: key);

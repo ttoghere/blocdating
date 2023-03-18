@@ -80,7 +80,7 @@ class Bio extends StatelessWidget {
             ),
           );
         } else {
-          return Text("Something Went Wrong");
+          return const Text("Something Went Wrong");
         }
       },
     );

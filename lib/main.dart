@@ -1,13 +1,13 @@
 import 'package:blocdating/blocs/blocs.dart';
 import 'package:blocdating/config/config.dart';
-import 'package:blocdating/cubits/cubit/sign_up_cubit.dart';
+import 'package:blocdating/cubits/login/login_cubit.dart';
+import 'package:blocdating/cubits/sign_up/sign_up_cubit.dart';
 
 import 'package:blocdating/screens/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'firebase_options.dart';
-import 'models/models.dart';
 import 'repositories/repositories.dart';
 
 void main() async {
@@ -48,13 +48,15 @@ class MyApp extends StatelessWidget {
             ),
           ),
           BlocProvider(
-            create: (context) => SwipeBloc()
-              ..add(
-                LoadUsersEvent(
-                  users:
-                      User.users.where((element) => element.id != "1").toList(),
-                ),
-              ),
+            create: (context) => LoginCubit(
+              authRepository: context.read<AuthRepository>(),
+            ),
+          ),
+          BlocProvider(
+            create: (context) => SwipeBloc(
+              authBloc: context.read<AuthBloc>(),
+              databaseRepository: context.read<DatabaseRepository>(),
+            ),
           ),
           BlocProvider(
             create: (context) => OnboardingBloc(

@@ -2,14 +2,21 @@ import 'package:blocdating/screens/onboarding/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-class EmailVerification extends StatelessWidget {
+class EmailVerification extends StatefulWidget {
   final TabController tabController;
 
-   EmailVerification({
+   const EmailVerification({
     Key? key,
     required this.tabController,
   }) : super(key: key);
+
+  @override
+  State<EmailVerification> createState() => _EmailVerificationState();
+}
+
+class _EmailVerificationState extends State<EmailVerification> {
   TextEditingController controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -33,7 +40,7 @@ class EmailVerification extends StatelessWidget {
                 unselectedColor: Theme.of(context).colorScheme.background,
               ),
               const SizedBox(height: 10),
-              CustomButton(tabController: tabController, text: 'NEXT STEP'),
+              CustomButton(tabController: widget.tabController, text: 'NEXT STEP'),
             ],
           ),
         ],

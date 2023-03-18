@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:blocdating/blocs/blocs.dart';
-import 'package:blocdating/screens/home/home_screen.dart';
+import 'package:blocdating/repositories/auth/auth_repository.dart';
 import 'package:blocdating/screens/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,6 +24,12 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
+  void initState() {
+    super.initState();
+    AuthRepository().signOut();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async => false,
@@ -34,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Timer(
               const Duration(seconds: 1),
               () => Navigator.of(context).pushReplacementNamed(
-                OnboardingScreen.routeName,
+                LoginScreen.routeName,
               ),
             );
           } else if (state.status == AuthStatus.authenticated) {

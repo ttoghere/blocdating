@@ -1,11 +1,6 @@
-import 'package:blocdating/blocs/blocs.dart';
-import 'package:blocdating/cubits/cubit/sign_up_cubit.dart';
-import 'package:blocdating/repositories/auth/auth_repository.dart';
-import 'package:blocdating/repositories/database/database_repository.dart';
-import 'package:blocdating/repositories/storage/storage_repository.dart';
+
 import 'package:blocdating/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'onboarding_screens/screens.dart';
 
 class OnboardingScreen extends StatelessWidget {
@@ -16,7 +11,7 @@ class OnboardingScreen extends StatelessWidget {
   static Route route() {
     return MaterialPageRoute(
       settings: const RouteSettings(name: routeName),
-      builder: (context) => OnboardingScreen(),
+      builder: (context) => const OnboardingScreen(),
     );
   }
 

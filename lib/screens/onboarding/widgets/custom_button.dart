@@ -1,5 +1,5 @@
 import 'package:blocdating/blocs/onboarding/onboarding_bloc.dart';
-import 'package:blocdating/cubits/cubit/sign_up_cubit.dart';
+import 'package:blocdating/cubits/sign_up/sign_up_cubit.dart';
 import 'package:blocdating/models/user_model.dart';
 import 'package:blocdating/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -45,8 +45,8 @@ class CustomButton extends StatelessWidget {
                 name: "",
                 age: 0,
                 gender: "",
-                imageUrls: [],
-                interests: [],
+                imageUrls: const [],
+                interests: const [],
                 bio: "",
                 jobTitle: "",
                 location: "");

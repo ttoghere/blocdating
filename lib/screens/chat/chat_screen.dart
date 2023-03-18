@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:blocdating/models/user_match_model.dart';
 import 'package:flutter/material.dart';
 
-import '../../widgets/widgets.dart';
 
 class ChatScreen extends StatelessWidget {
   static const String routeName = '/chat';
