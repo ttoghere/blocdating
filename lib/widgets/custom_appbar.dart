@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class CustomizedAppBar extends StatelessWidget {
   const CustomizedAppBar({
     super.key,
@@ -17,6 +16,7 @@ class CustomizedAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.transparent,
+      iconTheme: IconThemeData(color: Theme.of(context).primaryColor),
       elevation: 0,
       title: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

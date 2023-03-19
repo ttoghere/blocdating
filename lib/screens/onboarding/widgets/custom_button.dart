@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:blocdating/blocs/onboarding/onboarding_bloc.dart';
 import 'package:blocdating/cubits/sign_up/sign_up_cubit.dart';
 import 'package:blocdating/models/user_model.dart';
@@ -49,7 +51,10 @@ class CustomButton extends StatelessWidget {
                 interests: const [],
                 bio: "",
                 jobTitle: "",
-                location: "");
+                location: "",
+                matches: const [],
+                swipeLeft: const [],
+                swipeRight: const []);
             context.read<OnboardingBloc>().add(
                   StartOnboarding(user: user),
                 );

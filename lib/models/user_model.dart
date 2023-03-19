@@ -12,6 +12,9 @@ class User extends Equatable {
   final String bio;
   final String jobTitle;
   final String location;
+  final List<String>? swipeLeft;
+  final List<String>? swipeRight;
+  final List<String>? matches;
 
   const User({
     required this.id,
@@ -23,6 +26,9 @@ class User extends Equatable {
     required this.bio,
     required this.jobTitle,
     required this.location,
+    this.matches,
+    this.swipeLeft,
+    this.swipeRight,
   });
 
   @override
@@ -37,7 +43,40 @@ class User extends Equatable {
       bio,
       jobTitle,
       location,
+      matches,
+      swipeLeft,
+      swipeRight,
     ];
+  }
+
+  User copyWith({
+    String? id,
+    String? name,
+    int? age,
+    String? gender,
+    List<dynamic>? imageUrls,
+    List<dynamic>? interests,
+    String? bio,
+    String? jobTitle,
+    String? location,
+    List<String>? swipeLeft,
+    List<String>? swipeRight,
+    List<String>? matches,
+  }) {
+    return User(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      age: age ?? this.age,
+      gender: gender ?? this.gender,
+      imageUrls: imageUrls ?? this.imageUrls,
+      interests: interests ?? this.interests,
+      bio: bio ?? this.bio,
+      jobTitle: jobTitle ?? this.jobTitle,
+      location: location ?? this.location,
+      swipeLeft: swipeLeft ?? this.swipeLeft,
+      swipeRight: swipeRight ?? this.swipeRight,
+      matches: matches ?? this.matches,
+    );
   }
 
   static User fromSnapshot(DocumentSnapshot snap) {
@@ -51,32 +90,17 @@ class User extends Equatable {
       bio: snap['bio'],
       jobTitle: snap['jobTitle'],
       location: snap['location'],
+      swipeLeft: (snap['swipeLeft'] as List)
+          .map((swipeLeft) => swipeLeft as String)
+          .toList(),
+      swipeRight: (snap['swipeRight'] as List)
+          .map((swipeRight) => swipeRight as String)
+          .toList(),
+      matches: (snap['matches'] as List)
+          .map((matches) => matches as String)
+          .toList(),
     );
     return user;
-  }
-
-  User copyWith({
-    String? id,
-    String? name,
-    int? age,
-    String? gender,
-    List<dynamic>? imageUrls,
-    List<dynamic>? interests,
-    String? bio,
-    String? jobTitle,
-    String? location,
-  }) {
-    return User(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      age: age ?? this.age,
-      gender: gender ?? this.gender,
-      imageUrls: imageUrls ?? this.imageUrls,
-      interests: interests ?? this.interests,
-      bio: bio ?? this.bio,
-      jobTitle: jobTitle ?? this.jobTitle,
-      location: location ?? this.location,
-    );
   }
 
   Map<String, dynamic> toMap() {
@@ -89,6 +113,9 @@ class User extends Equatable {
       'bio': bio,
       'jobTitle': jobTitle,
       'location': location,
+      'swipeLeft': swipeLeft,
+      'swipeRight': swipeRight,
+      'matches': matches,
     };
   }
 

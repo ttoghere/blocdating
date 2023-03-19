@@ -21,6 +21,7 @@ class AuthRepository extends BaseAuthRepository {
     return null;
   }
 
+  @override
   Future<void> logInWithEmailAndPassword({
     required String email,
     required String password,

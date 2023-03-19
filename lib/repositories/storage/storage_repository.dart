@@ -4,10 +4,10 @@ import 'package:blocdating/models/user_model.dart';
 import 'package:blocdating/repositories/database/database_repository.dart';
 import 'package:blocdating/repositories/storage/base_storage_repository.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:firebase_storage/firebase_storage.dart' as fStorage;
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class StorageRepository extends BaseStorageRepository {
-  final fStorage.FirebaseStorage storage = fStorage.FirebaseStorage.instance;
+  final firebase_storage.FirebaseStorage storage = firebase_storage.FirebaseStorage.instance;
   @override
   Future<void> uploadImage(User user, XFile image) async {
     try {
