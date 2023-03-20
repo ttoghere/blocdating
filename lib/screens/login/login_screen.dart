@@ -62,7 +62,9 @@ class _LoginScreenState extends State<LoginScreen> {
               text: 'LOGIN',
               textColor: Theme.of(context).primaryColor,
               onPressed: () {
-                context.read<LoginCubit>().logInWithCredentials();
+                context.read<LoginCubit>().logInWithCredentials().whenComplete(
+                    () =>
+                        Navigator.of(context).pushNamed(HomeScreen.routeName));
               },
               beginColor: Colors.white,
               endColor: Colors.white,

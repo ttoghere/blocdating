@@ -159,9 +159,11 @@ class ProfileScreen extends StatelessWidget {
                         TextButton(
                           onPressed: () {
                             RepositoryProvider.of<AuthRepository>(context)
-                                .signOut();
-                            Navigator.of(context).pushNamedAndRemoveUntil(
-                                LoginScreen.routeName, (route) => false);
+                                .signOut()
+                                .whenComplete(() => Navigator.of(context)
+                                    .pushNamedAndRemoveUntil(
+                                        LoginScreen.routeName,
+                                        (route) => false));
                           },
                           child: const Text("Sign Out"),
                         ),

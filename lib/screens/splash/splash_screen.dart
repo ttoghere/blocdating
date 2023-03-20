@@ -34,8 +34,6 @@ class _SplashScreenState extends State<SplashScreen> {
     return WillPopScope(
       onWillPop: () async => false,
       child: BlocListener<AuthBloc, AuthState>(
-        listenWhen: (previous, current) =>
-            previous.authUser != current.authUser,
         listener: (context, state) {
           log("Listener...");
           if (state.status == AuthStatus.unauthenticated) {
